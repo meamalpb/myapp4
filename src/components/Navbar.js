@@ -43,15 +43,15 @@ class Navbar extends Component {
 
     showSignup=()=>{
         if($('#Signup-Page').css("display") == 'block') {
-            $('#Signup-Page').css("display","none");
-            $('#Dark').css("display","none");
+            $('#Signup-Page').fadeOut();
+            $('#Dark').fadeOut();
             $('#Home-Button').addClass("clicked");
             $('#Signup-Button').removeClass("clicked");
         }
         else {
-            $('#Login-Page').css("display","none");
-            $('#Signup-Page').css("display","block");
-            $('#Dark').css("display","block");
+            $('#Login-Page').fadeOut();
+            $('#Signup-Page').fadeIn();
+            $('#Dark').fadeIn();
             $('#Home-Button').removeClass("clicked");
             $('#Signup-Button').addClass("clicked");
             $('#Login-Button').removeClass("clicked");
@@ -61,15 +61,15 @@ class Navbar extends Component {
 
     showLogin=()=>{
         if($('#Login-Page').css("display") == 'block') {
-            $('#Login-Page').css("display","none");
-            $('#Dark').css("display","none");
+            $('#Login-Page').fadeOut();
+            $('#Dark').fadeOut();
             $('#Login-Button').removeClass("clicked");
             $('#Home-Button').addClass("clicked");
         }
         else {
-            $('#Signup-Page').css("display","none");
-            $('#Login-Page').css("display","block");
-            $('#Dark').css("display","block");
+            $('#Signup-Page').fadeOut();
+            $('#Login-Page').fadeIn();
+            $('#Dark').fadeIn();
             $('#Signup-Button').removeClass("clicked");
             $('#Home-Button').removeClass("clicked");
             $('#Login-Button').addClass("clicked");
@@ -77,9 +77,9 @@ class Navbar extends Component {
     }
 
     showHome=()=>{
-        $('#Login-Page').css("display","none");
-        $('#Signup-Page').css("display","none");
-        $('#Dark').css("display","none");
+        $('#Login-Page').fadeOut();
+        $('#Signup-Page').fadeOut();
+        $('#Dark').fadeOut();
         $('#Login-Button').removeClass("clicked");
         $('#Signup-Button').removeClass("clicked")
         $('#Home-Button').addClass("clicked");

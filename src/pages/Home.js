@@ -30,9 +30,9 @@ class Home extends Component {
     }
     
     hideForm = () =>{
-        $('#Login-Page').css("display","none");
-        $('#Signup-Page').css("display","none");
-        $('#Dark').css("display","none");
+        $('#Login-Page').fadeOut();
+        $('#Signup-Page').fadeOut();
+        $('#Dark').fadeOut();
         $('#Home-Button').addClass("clicked");
         $('#Signup-Button').removeClass("clicked");
         $('#Login-Button').removeClass("clicked");
