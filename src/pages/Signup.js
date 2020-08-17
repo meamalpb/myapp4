@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './login.css'
-import fire from '../config/fire'
+import '../styles/login.css';
+import fire from '../config/fire';
 import $ from 'jquery';
 
 const db = fire.firestore()
-export class login extends Component {
+class Signup extends Component {
 	constructor(props) {
 		super(props)
 	
@@ -68,34 +68,34 @@ componentDidMount(){
 		return (
 			<div>
 				<form>
-  <label>
-    <p className="label-txt">ENTER YOUR EMAIL</p>
-    <input type="text" className="input" value={this.state.email} onChange={this.handleEmailChange}/>
-    <div className="line-box">
-      <div className="line"></div>
-    </div>
-  </label>
-  <label>
-    <p className="label-txt">ENTER YOUR NAME</p>
-    <input type="text"className="input" value={this.state.name} onChange={this.handleNameChange}/>
-    <div className="line-box">
-      <div className="line"></div>
-    </div>
-  </label>
-  <label>
-    <p className="label-txt">ENTER YOUR PASSWORD</p>
-    <input type="password" className="input" value={this.state.password} onChange={this.handlePasswordChange}/>
-    <div className="line-box">
-      <div className="line"></div>
-    </div>
-  </label>
-  <button type="submit" onClick={this.handleLogin}>submit</button>
-</form>
+          <label>
+            <p className="label-txt">ENTER YOUR EMAIL</p>
+            <input type="text" className="input" value={this.state.email} onChange={this.handleEmailChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <label>
+            <p className="label-txt">ENTER YOUR NAME</p>
+            <input type="text"className="input" value={this.state.name} onChange={this.handleNameChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <label>
+            <p className="label-txt">ENTER YOUR PASSWORD</p>
+            <input type="password" className="input" value={this.state.password} onChange={this.handlePasswordChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <button type="submit" onClick={this.handleLogin}>submit</button>
+        </form>
 			
 			</div>
 		)
 	}
 }
 
-export default login
+export default Signup;
 
