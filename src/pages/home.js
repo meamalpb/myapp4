@@ -19,6 +19,8 @@ class home extends Component {
                 this.setState(prevState => ({
                     users: [...prevState.users, doc.data()]
                   }))
+                  
+                this.state.users.map(user=> console.log(user.name,user.email) )
                 
 			});
 		});
@@ -27,9 +29,7 @@ class home extends Component {
         return (
             <div>
                 <h1>home</h1>
-                {
-                    this.state.users.map(user=> <h2>{user.name},{user.email}</h2> )
-                }
+                
             </div>
         )
     }
