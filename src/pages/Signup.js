@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './login.css'
-import fire from '../config/fire'
+import '../styles/login.css';
+import fire from '../config/fire';
 import $ from 'jquery';
 import {isEmpty} from '../components/validation'
 import validator from 'email-validator'
 //console.log(validator.validate("a@b.com"))
 
 const db = fire.firestore()
-//db.collection("users").where("email","==","test1@gmail.com").get().then(c =>console.log(c))
-export class login extends Component {
+class Signup extends Component {
 	constructor(props) {
 		super(props)
 	
@@ -81,6 +80,7 @@ componentDidMount(){
     
 		fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) =>{
       console.log(u);
+      
       db.collection("users").add({
         name: this.state.name,
         email: this.state.email
@@ -108,37 +108,34 @@ componentDidMount(){
 		return (
 			<div>
 				<form>
-  <label>
-    <p className="label-txt">ENTER YOUR EMAIL</p>
-    <input type="text" className="input" value={this.state.email} onChange={this.handleEmailChange}/>
-    <div className="line-box">
-      
-      <div className="line"></div>
-      
-    </div>
-    
-  </label>
-  <label>
-    <p className="label-txt">ENTER YOUR NAME</p>
-    <input type="text"className="input" value={this.state.name} onChange={this.handleNameChange}/>
-    <div className="line-box">
-      <div className="line"></div>
-    </div>
-  </label>
-  <label>
-    <p className="label-txt">ENTER YOUR PASSWORD</p>
-    <input type="password" className="input" value={this.state.password} onChange={this.handlePasswordChange}/>
-    <div className="line-box">
-      <div className="line"></div>
-    </div>
-  </label>
-  <button type="submit" onClick={this.handleLogin}>submit</button>
-</form>
+          <label>
+            <p className="label-txt">ENTER YOUR EMAIL</p>
+            <input type="text" className="input" value={this.state.email} onChange={this.handleEmailChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <label>
+            <p className="label-txt">ENTER YOUR NAME</p>
+            <input type="text"className="input" value={this.state.name} onChange={this.handleNameChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <label>
+            <p className="label-txt">ENTER YOUR PASSWORD</p>
+            <input type="password" className="input" value={this.state.password} onChange={this.handlePasswordChange}/>
+            <div className="line-box">
+              <div className="line"></div>
+            </div>
+          </label>
+          <button type="submit" onClick={this.handleLogin}>submit</button>
+        </form>
 			
 			</div>
 		)
 	}
 }
 
-export default login
+export default Signup;
 
