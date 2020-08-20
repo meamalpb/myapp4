@@ -8,5 +8,11 @@
 }
 
 .label{
-    margin-top:10px;
+    margin-top:15px;
+}
+.complain-heading:hover,.btn-link {
+    text-decoration: none !important;
+}
+.card-head{
+    text-align: left;
 }

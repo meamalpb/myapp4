@@ -6,7 +6,7 @@ import '../styles/home.css';
 import Dark from '../black.jpg';
 import $ from 'jquery';
 import Card from './Card';
-
+import ComplaintForm from './ComplaintForm';
 
 const db=fire.firestore();
 
@@ -49,18 +49,19 @@ class Home extends Component {
     hideForm = () =>{
         $('#Login-Page').fadeOut();
         $('#Signup-Page').fadeOut();
+        $('#Complaint-Form').fadeOut();
         $('#Dark').fadeOut();
         $('#Home-Button').addClass("clicked");
         $('#Signup-Button').removeClass("clicked");
         $('#Login-Button').removeClass("clicked");
+        $('#Complaint-Button').removeClass("clicked");
     }
 
 
     render() {
         return (
             <div>
-                <div id='Heading'>
-                    <h1>home</h1>      
+                <div id='Heading'>      
                     <div>
                         <Card />
                     </div>            
@@ -68,6 +69,9 @@ class Home extends Component {
                 
                 <div id='Dark' onClick = {this.hideForm}>
                     <img src={Dark} alt=""></img>
+                </div>
+                <div id='Complaint-Form'>
+                     <ComplaintForm />
                 </div>
                 <div id='Login-Page'>
                     <Login />

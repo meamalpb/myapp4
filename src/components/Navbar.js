@@ -21,15 +21,19 @@ class Navbar extends Component {
         fire.auth().onAuthStateChanged((user)=>{
             if(user){
                 this.setState({
-                    button : <Button variant="contained" color="primary" disableElevation  className="coloor" onClick={this.handleSignout}>sign out</Button>
+                    button : 
+                    <span>
+                        <Button variant="contained" color="primary" disableElevation  className="coloor" component={Link} id='Complaint-Button' onClick={this.showComplaint}>Add Complaint</Button>
+                        <Button variant="contained" color="primary" disableElevation  className="coloor" component={Link} id='Signout-Button' onClick={this.handleSignout}>Sign Out</Button>
+                    </span>
                 })
             }
             else{
                 this.setState({
                     button:
                     <span> 
-                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Login-Button' onClick = {this.showLogin}>login</Button>
-                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Signup-Button' onClick = {this.showSignup}>signup</Button>
+                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Login-Button' onClick = {this.showLogin}>Login</Button>
+                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Signup-Button' onClick = {this.showSignup}>Sign Up</Button>
                     </span>
                 })
             }
@@ -40,12 +44,33 @@ class Navbar extends Component {
         this.authListener();
     }
 
+
+
+    showComplaint = () =>{
+        if($('#Complaint-Form').css("display") === 'block') {
+            $('#Complaint-Form').fadeOut();
+            $('#Dark').fadeOut();
+            $('#Home-Button').addClass("clicked");
+            $('#Complaint-Button').removeClass("clicked");
+        }
+        else {
+            $('#Complaint-Form').fadeIn();
+            $('#Dark').fadeIn();
+            $('#Home-Button').removeClass("clicked");
+            $('#Complaint-Button').addClass("clicked");
+        }
+    }
+
+
     handleSignout=()=>{
        
         fire.auth().signOut().then(() =>{
-            console.log("logged out")
+            $('#Complaint-Form').css('display','none');
+      		$('#Dark').css('display','none');
+      		$('#Home-Button').addClass("clicked");
+      		$('#Complaint-Button').removeClass("clicked");
         }).catch((err)=>{
-            console.log(err)
+            console.log(err);
         })
     }
 
@@ -88,9 +113,11 @@ class Navbar extends Component {
     showHome=()=>{
         $('#Login-Page').fadeOut();
         $('#Signup-Page').fadeOut();
+        $('#Complaint-Form').fadeOut();
         $('#Dark').fadeOut();
         $('#Login-Button').removeClass("clicked");
-        $('#Signup-Button').removeClass("clicked")
+        $('#Signup-Button').removeClass("clicked");
+        $('#Complaint-Button').removeClass("clicked");
         $('#Home-Button').addClass("clicked");
     }
 
