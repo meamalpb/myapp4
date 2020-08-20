@@ -5,6 +5,7 @@ import Signup from './Signup';
 import '../styles/home.css';
 import Dark from '../black.jpg';
 import $ from 'jquery';
+import Card from './Card';
 
 
 const db=fire.firestore();
@@ -15,7 +16,6 @@ class Home extends Component {
     
         this.state = {
              users:[],
-             complains:[],
              user:null
         }
     }
@@ -31,16 +31,6 @@ class Home extends Component {
                 users:temp
               })
         });
-        db.collection('Complaints').get().then(snapshot => {
-            let temp = [];
-			snapshot.docs.forEach(doc => {
-                temp.push(doc.data());
-            });
-            this.setState({
-                complains:temp
-            })
-        });
-        this.authListener()
     }
 
 
@@ -70,9 +60,10 @@ class Home extends Component {
         return (
             <div>
                 <div id='Heading'>
-                    <h1>home</h1>
-                    { this.state.users.map((user,index)=> <h2 key={index}>{user.email}</h2> ) }  
-                    { this.state.complains.map((user,index)=> <li key={index}>{user.District}</li> ) }                 
+                    <h1>home</h1>      
+                    <div>
+                        <Card />
+                    </div>            
                 </div>
                 
                 <div id='Dark' onClick = {this.hideForm}>

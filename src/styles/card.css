@@ -1,0 +1,12 @@
+.ComplainContainer {
+    width:80%;
+    margin-left: 10%;
+}
+
+.card-body{
+    text-align:left;
+}
+
+.label{
+    margin-top:10px;
+}

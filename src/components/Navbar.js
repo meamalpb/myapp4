@@ -13,24 +13,33 @@ class Navbar extends Component {
         super(props)
     
         this.state = {
-             user:null
+             button:null
         }
-    }
-    componentDidMount(){
-        this.authListener()
     }
     
     authListener=()=>{
         fire.auth().onAuthStateChanged((user)=>{
             if(user){
-                this.setState({user})
+                this.setState({
+                    button : <Button variant="contained" color="primary" disableElevation  className="coloor" onClick={this.handleSignout}>sign out</Button>
+                })
             }
             else{
-                this.setState({user:null})
+                this.setState({
+                    button:
+                    <span> 
+                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Login-Button' onClick = {this.showLogin}>login</Button>
+                        <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Signup-Button' onClick = {this.showSignup}>signup</Button>
+                    </span>
+                })
             }
         })
     }
     
+    componentDidMount(){
+        this.authListener();
+    }
+
     handleSignout=()=>{
        
         fire.auth().signOut().then(() =>{
@@ -93,18 +102,7 @@ class Navbar extends Component {
                     <Toolbar>
                         <div className="right">
                             <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor clicked" id='Home-Button' onClick = {this.showHome}>home</Button>
-                            {
-                                this.state.user? 
-                                    (
-                                        <Button variant="contained" color="primary" disableElevation  className="coloor" onClick={this.handleSignout}>sign out</Button>
-                                    )   :
-                                    (
-                                        <span> 
-                                            <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Login-Button' onClick = {this.showLogin}>login</Button>
-                                            <Button variant="contained" color="primary" disableElevation component={Link} to='/' className="coloor" id='Signup-Button' onClick = {this.showSignup}>signup</Button>
-                                        </span>
-                                    )
-                            }
+                            {this.state.button}
                         </div>
                     </Toolbar>
                 </AppBar>

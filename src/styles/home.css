@@ -1,6 +1,8 @@
 #Heading {
     position: absolute;
     margin-top:40px;
+    width:100%;
+    text-align: center;
 }
 #Dark {
     width:100%;
