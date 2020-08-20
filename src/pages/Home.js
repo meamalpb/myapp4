@@ -23,23 +23,23 @@ class Home extends Component {
 
     componentDidMount(){
 		db.collection('users').onSnapshot(snapshot => {
-			snapshot.docs.forEach(doc => {
-                this.setState(prevState => ({
-                    users: [...prevState.users, doc.data()]
-                  }))
-                
-			});
+            let temp=[];
+            snapshot.docs.forEach(doc => {
+                temp.push(doc.data());
+            });
+            this.setState({
+                users:temp
+              })
         });
         db.collection('Complaints').get().then(snapshot => {
+            let temp = [];
 			snapshot.docs.forEach(doc => {
-                this.setState(prevState => ({
-                    complains: [...prevState.complains, doc.data()]
-                  }))
-			});
+                temp.push(doc.data());
+            });
+            this.setState({
+                complains:temp
+            })
         });
-
-
-        console.log(this.state.users)
         this.authListener()
     }
 

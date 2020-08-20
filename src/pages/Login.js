@@ -48,7 +48,12 @@ class Login extends Component {
 	handleLogin=(e)=>{
 		e.preventDefault();
 		fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) =>{
-			console.log(u)
+			$('#Login-Page').css('display','none');
+      		$('#Signup-Page').css('display','none');
+      		$('#Dark').css('display','none');
+      		$('#Home-Button').addClass("clicked");
+      		$('#Signup-Button').removeClass("clicked");
+      		$('#Login-Button').removeClass("clicked");
 		}).catch((err)=>{
 			console.log(err)
 		})

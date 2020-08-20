@@ -78,14 +78,20 @@ componentDidMount(){
           else{
       
     
-		fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) =>{
-      console.log(u);
-      
+    fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
+    .then((u) =>{  
       db.collection("users").add({
         name: this.state.name,
         email: this.state.email
-    });
-		}).catch((err)=>{
+      });
+      $('#Login-Page').css('display','none');
+      $('#Signup-Page').css('display','none');
+      $('#Dark').css('display','none');
+      $('#Home-Button').addClass("clicked");
+      $('#Signup-Button').removeClass("clicked");
+      $('#Login-Button').removeClass("clicked");
+    })
+    .catch((err)=>{
       console.log(err)
 			if(err.message==="The email address is badly formatted."){
         console.log("enter valid email")
