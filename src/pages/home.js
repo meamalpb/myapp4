@@ -71,7 +71,8 @@ class Home extends Component {
             <div>
                 <div id='Heading'>
                     <h1>home</h1>
-                    { this.state.users.map((user,index)=> <h2 key={index}>{user.email}</h2> ) }                 
+                    { this.state.users.map((user,index)=> <h2 key={index}>{user.email}</h2> ) }  
+                    { this.state.complains.map((user,index)=> <li key={index}>{user.District}</li> ) }                 
                 </div>
                 
                 <div id='Dark' onClick = {this.hideForm}>
