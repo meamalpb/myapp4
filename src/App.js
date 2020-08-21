@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './pages/Home';
-import Navbar from './components/Navbar';
+import Admin from './pages/Admin';
 import './App.css';
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
     <div > 
       <div className = "contain">
         <Router>
-          <Navbar></Navbar>
           <Switch>
             <Route exact path ="/" component={Home}></Route>
+            <Route exact path ="/admin" component={Admin}></Route>
           </Switch>
         </Router>
       </div>

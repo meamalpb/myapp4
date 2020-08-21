@@ -53,7 +53,8 @@ class Login extends Component {
       		$('#Dark').css('display','none');
       		$('#Home-Button').addClass("clicked");
       		$('#Signup-Button').removeClass("clicked");
-      		$('#Login-Button').removeClass("clicked");
+			$('#Login-Button').removeClass("clicked");
+			window.location.href = '/admin';
 		}).catch((err)=>{
 			console.log(err)
 		})

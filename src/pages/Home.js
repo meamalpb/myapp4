@@ -1,51 +1,21 @@
-import React, { Component } from 'react'
-import fire from '../config/fire'
+import React, { Component } from 'react';
+import fire from '../config/fire';
 import Login from './Login';
 import Signup from './Signup';
 import '../styles/home.css';
 import Dark from '../black.jpg';
 import $ from 'jquery';
-import Card from './Card';
-import ComplaintForm from './ComplaintForm';
-
-const db=fire.firestore();
+import Navbar from '../components/NavbarHome';
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-    
+
+    constructor(){
+        super();
         this.state = {
-             users:[],
-             user:null
-        }
+            logged :1
+        };
     }
-    
-
-    componentDidMount(){
-		db.collection('users').onSnapshot(snapshot => {
-            let temp=[];
-            snapshot.docs.forEach(doc => {
-                temp.push(doc.data());
-            });
-            this.setState({
-                users:temp
-              })
-        });
-    }
-
-
-    authListener=()=>{
-        fire.auth().onAuthStateChanged((user)=>{
-            if(user){
-                this.setState({user})
-            }
-            else{
-                this.setState({user:null})
-            }
-        })
-    }
-
-
+   
     hideForm = () =>{
         $('#Login-Page').fadeOut();
         $('#Signup-Page').fadeOut();
@@ -57,30 +27,42 @@ class Home extends Component {
         $('#Complaint-Button').removeClass("clicked");
     }
 
+    componentDidMount(){
+        fire.auth().onAuthStateChanged((user)=>{
+            if(user){
+                window.location.href = '/admin';
+            }
+            else{
+                this.setState(
+                    {logged:0}
+                );
+            }
+        })
+    }
 
     render() {
         return (
             <div>
-                <div id='Heading'>      
-                    <div>
-                        <Card />
-                    </div>            
-                </div>
-                
-                <div id='Dark' onClick = {this.hideForm}>
-                    <img src={Dark} alt=""></img>
-                </div>
-                <div id='Complaint-Form'>
-                     <ComplaintForm />
-                </div>
-                <div id='Login-Page'>
-                    <Login />
-                </div>
-                <div id='Signup-Page'>
-                    <Signup />    
-                </div>
-               
-                
+                {this.state.logged === 0
+                    ?<div>
+                        <Navbar/>
+                        <div id='Heading'>      
+                            <div>
+                                HOME
+                            </div>            
+                        </div>
+                        <div id='Dark' onClick = {this.hideForm}>
+                            <img src={Dark} alt=""></img>
+                        </div>
+                        <div id='Login-Page'>
+                            <Login />
+                        </div>
+                        <div id='Signup-Page'>
+                            <Signup />    
+                        </div>
+                    </div>
+                    :<div></div>     
+                }    
             </div>
         )
     }
